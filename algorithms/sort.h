@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -34,7 +35,69 @@ std::vector<T> insertion_sort(std::vector<T>&& v)
 }
 
 template<typename T>
-std::vector<T> merge_sort(std::vector<T>&& v);
+std::vector<T> merge(std::vector<T>& v, int begin, int mid, int end)
+{
+    std::cout << "begin = " << begin << std::endl;
+    std::cout << "mid = " << mid << std::endl;
+    std::cout << "end = " << end << std::endl;
+
+    int llen = mid - begin + 1;
+    int rlen = end - mid;
+    vector<T> lv(llen);
+    vector<T> rv(rlen);
+    
+    for(auto val : v)
+        cout << val << ", ";
+    cout << endl;
+    
+    for(int i=0; i < llen; ++i)
+        lv[i] = v[begin + i];
+
+    for(auto val : lv)
+        cout << val << ", ";
+    cout << endl;
+
+    for(int i=0; i < rlen; ++i)
+        rv[i] = v[mid + 1 + i];
+
+    for(auto val : rv)
+        cout << val << ",";
+    cout << endl;
+    
+    for(int k=begin, i=0, j=0; (k < end) && (i < llen) && (i < rlen); ++k)
+    {
+        if(lv[i] < rv[j])
+        {
+            v[k++] = lv[i++];
+            v[k] = rv[j];
+        }
+        else
+        {
+            v[k++] = rv[j++];
+            v[k] = lv[i];
+        }
+    }
+
+    for(auto val : v)
+        cout << val << ",";
+    cout << endl;
+    
+    return v;
+}
+
+template<typename T>
+std::vector<T> merge_sort(std::vector<T>& v, int begin, int end)
+{
+    if(begin >= end)
+        return v;
+
+    int mid = (begin + end)/2;
+    merge_sort(v, begin, mid);
+    merge_sort(v, mid+1, end);
+    merge(v, begin, mid, end);
+
+    return v;
+}
 
 template<typename T>
 std::vector<T> bubble_sort(std::vector<T>&& v);
