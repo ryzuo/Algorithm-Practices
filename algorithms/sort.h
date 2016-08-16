@@ -35,6 +35,53 @@ std::vector<T> insertion_sort(std::vector<T>&& v)
 }
 
 template<typename T>
+std::vector<T> bubble_sort(std::vector<T>&& v)
+{
+    for(int i=0; i < v.size() - 1; ++i)
+    {
+        for(int j=0; j < v.size()-i-1; ++j)
+        {
+            if(v[j] > v[j+1])
+            {
+                T temp = v[j];
+                v[j]= v[j+1];
+                v[j+1] = temp;
+            } // swap
+        } // end of inner loop
+    } // end of outer loop
+
+    return v;
+}
+
+template<typename T>
+std::vector<T> selection_sort(std::vector<T>&& v)
+{
+    for(int i=0; i< v.size() - 1; ++i)
+    {
+        int min = i;
+
+        // inner loop finds out the minimum value among
+        // the rest n-i elements, then swap this value
+        // with the ith element.
+        for(int j=i; j < v.size(); ++j)
+        {
+            if(v[j] < v[min])
+                min = j;
+        }
+        T temp = v[i];
+        v[i] = v[min];
+        v[min] = temp;
+
+        // Through out this, each round of the outer loop
+        // will find out the minimum value among the rest
+        // n-i elements, and put it to the ith heading of
+        // the array.
+    }
+
+    return v;
+}
+
+template<typename T>
 std::vector<T> merge(std::vector<T>& v, int begin, int mid, int end)
 {
     int llen = mid - begin + 1;
@@ -82,9 +129,6 @@ std::vector<T> merge_sort(std::vector<T>& v, int begin, int end)
 
     return v;
 }
-
-template<typename T>
-std::vector<T> bubble_sort(std::vector<T>&& v);
 
 template<typename T>
 std::vector<T> quick_sort(std::vector<T>&& v);

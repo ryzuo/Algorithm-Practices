@@ -16,23 +16,23 @@ enum class Problem
 
 enum class SortingMethods
 {
-    INSERTION = 1001,
-    MERGE,
+    INSERTION = 101,
     BUBBLE,
+    SELECTION,
+    MERGE,
     QUICK,
-    HEAP,
-    SELECTION
+    HEAP
 };
 
 inline void DisplaySortingMethods()
 {
     std::cout
         << (int)SortingMethods::INSERTION << ". Insertion Sort" << std::endl
-        << (int)SortingMethods::MERGE << ". Merge Sort" << std::endl
         << (int)SortingMethods::BUBBLE << ". Bubble Sort" << std::endl
+        << (int)SortingMethods::SELECTION << ". Selection Sort" << std::endl
+        << (int)SortingMethods::MERGE << ". Merge Sort" << std::endl
         << (int)SortingMethods::QUICK << ". Quick Sort" << std::endl
-        << (int)SortingMethods::HEAP << ". Heap Sort" << std::endl
-        << (int)SortingMethods::SELECTION << ". Selection Sort" << std::endl;
+        << (int)SortingMethods::HEAP << ". Heap Sort" << std::endl;
 }
 
 vector<int> BuildIntArrayFromFile(string filename);

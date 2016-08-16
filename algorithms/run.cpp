@@ -64,16 +64,18 @@ void RunSort()
         case (int)SortingMethods::INSERTION:
             sorted_voi = insertion_sort<int>(std::move(voi));
             break;
+        case (int)SortingMethods::BUBBLE:
+            sorted_voi = bubble_sort<int>(std::move(voi));
+            break;
+        case (int)SortingMethods::SELECTION:
+            sorted_voi = selection_sort<int>(std::move(voi));
+            break;
         case (int)SortingMethods::MERGE:
             sorted_voi = merge_sort<int>(voi, 0, voi.size()-1);
-            break;
-        case (int)SortingMethods::BUBBLE:
             break;
         case (int)SortingMethods::QUICK:
             break;
         case (int)SortingMethods::HEAP:
-            break;
-        case (int)SortingMethods::SELECTION:
             break;
         default:
             break;
