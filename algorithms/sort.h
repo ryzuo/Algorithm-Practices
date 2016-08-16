@@ -37,51 +37,34 @@ std::vector<T> insertion_sort(std::vector<T>&& v)
 template<typename T>
 std::vector<T> merge(std::vector<T>& v, int begin, int mid, int end)
 {
-    std::cout << "begin = " << begin << std::endl;
-    std::cout << "mid = " << mid << std::endl;
-    std::cout << "end = " << end << std::endl;
-
     int llen = mid - begin + 1;
     int rlen = end - mid;
+    int lIdx = 0, rIdx = 0;
+    int k = begin;
+
     vector<T> lv(llen);
     vector<T> rv(rlen);
-    
-    for(auto val : v)
-        cout << val << ", ";
-    cout << endl;
     
     for(int i=0; i < llen; ++i)
         lv[i] = v[begin + i];
 
-    for(auto val : lv)
-        cout << val << ", ";
-    cout << endl;
-
     for(int i=0; i < rlen; ++i)
         rv[i] = v[mid + 1 + i];
 
-    for(auto val : rv)
-        cout << val << ",";
-    cout << endl;
-    
-    for(int k=begin, i=0, j=0; (k < end) && (i < llen) && (i < rlen); ++k)
+    while((lIdx < llen) && (rIdx < rlen))
     {
-        if(lv[i] < rv[j])
-        {
-            v[k++] = lv[i++];
-            v[k] = rv[j];
-        }
+        if(lv[lIdx] < rv[rIdx])
+            v[k++] = lv[lIdx++];
         else
-        {
-            v[k++] = rv[j++];
-            v[k] = lv[i];
-        }
+            v[k++] = rv[rIdx++];
     }
 
-    for(auto val : v)
-        cout << val << ",";
-    cout << endl;
-    
+    while(lIdx < llen)
+        v[k++] = lv[lIdx++];
+
+    while(rIdx < rlen)
+        v[k++] = rv[rIdx++];
+
     return v;
 }
 
@@ -92,6 +75,7 @@ std::vector<T> merge_sort(std::vector<T>& v, int begin, int end)
         return v;
 
     int mid = (begin + end)/2;
+    
     merge_sort(v, begin, mid);
     merge_sort(v, mid+1, end);
     merge(v, begin, mid, end);

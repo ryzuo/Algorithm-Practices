@@ -65,7 +65,7 @@ void RunSort()
             sorted_voi = insertion_sort<int>(std::move(voi));
             break;
         case (int)SortingMethods::MERGE:
-            sorted_voi = merge_sort<int>(voi, 0, voi.size());
+            sorted_voi = merge_sort<int>(voi, 0, voi.size()-1);
             break;
         case (int)SortingMethods::BUBBLE:
             break;
