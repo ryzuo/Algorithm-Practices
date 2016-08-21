@@ -1,5 +1,6 @@
 #include "common.h"
 #include "sort.h"
+#include <unistd.h>
 
 void Usage()
 {
@@ -74,6 +75,7 @@ void RunSort()
             sorted_voi = merge_sort<int>(voi, 0, voi.size()-1);
             break;
         case (int)SortingMethods::QUICK:
+            sorted_voi = quick_sort<int>(voi, 0, voi.size()-1);
             break;
         case (int)SortingMethods::HEAP:
             break;

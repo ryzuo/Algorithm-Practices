@@ -5,7 +5,15 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;
+namespace com {
+    template<typename T>
+    void swap(T &x, T &y)
+    {
+        T temp = x;
+        x = y;
+        y = temp;
+    }
+} // end of namesapce com
 
 template<typename T>
 std::vector<T> insertion_sort(std::vector<T>&& v)
@@ -42,11 +50,7 @@ std::vector<T> bubble_sort(std::vector<T>&& v)
         for(int j=0; j < v.size()-i-1; ++j)
         {
             if(v[j] > v[j+1])
-            {
-                T temp = v[j];
-                v[j]= v[j+1];
-                v[j+1] = temp;
-            } // swap
+                com::swap(v[j], v[j+1]);
         } // end of inner loop
     } // end of outer loop
 
@@ -68,9 +72,7 @@ std::vector<T> selection_sort(std::vector<T>&& v)
             if(v[j] < v[min])
                 min = j;
         }
-        T temp = v[i];
-        v[i] = v[min];
-        v[min] = temp;
+        com::swap(v[i], v[min]);
 
         // Through out this, each round of the outer loop
         // will find out the minimum value among the rest
@@ -130,8 +132,34 @@ std::vector<T> merge_sort(std::vector<T>& v, int begin, int end)
     return v;
 }
 
+/* *
+ * 
+ * */
 template<typename T>
-std::vector<T> quick_sort(std::vector<T>&& v);
+int partition(std::vector<T>& v, int begin, int end)
+{
+    int i = begin, j = end;
+    T pivot = v[i];
+    while(i < j)
+    {
+        while ((i < end) && (v[i] < pivot)) i++;
+        while ((j > begin) && (v[j] > pivot)) j--;
+        if(i < j)
+            com::swap(v[i], v[j]);
+    }
+    com::swap(pivot, v[j]);
+    return j;
+}
+
+template<typename T>
+std::vector<T> quick_sort(std::vector<T>& v, int begin, int end)
+{
+    int pi = partition(v, begin, end);
+    quick_sort(v, begin, pi-1);
+    quick_sort(v, pi+1, end);
+
+    return v;
+}
 
 template<typename T>
 std::vector<T> heap_sort(std::vector<T>&& v);
