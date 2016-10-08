@@ -11,7 +11,8 @@ enum class Problem
 {
     SORTING,
     TREE,
-    HASH 
+    HASH,
+    OTHER
 };
 
 enum class SortingMethods
@@ -24,6 +25,11 @@ enum class SortingMethods
     HEAP
 };
 
+enum class OtherProblems
+{
+    SOUNDEX = 501
+};
+
 inline void DisplaySortingMethods()
 {
     std::cout
@@ -33,6 +39,12 @@ inline void DisplaySortingMethods()
         << (int)SortingMethods::MERGE << ". Merge Sort" << std::endl
         << (int)SortingMethods::QUICK << ". Quick Sort" << std::endl
         << (int)SortingMethods::HEAP << ". Heap Sort" << std::endl;
+}
+
+inline void DisplayOtherProblems()
+{
+    std::cout
+        << (int)OtherProblems::SOUNDEX << ". Soundex (a phonetic algorithm for indexing names by sound)" << std::endl;
 }
 
 vector<int> BuildIntArrayFromFile(string filename);
