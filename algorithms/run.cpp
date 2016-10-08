@@ -1,6 +1,8 @@
 #include "common.h"
 #include "sort.h"
+#include "funutil.h"
 #include <unistd.h>
+#include <fstream>
 
 void Usage()
 {
@@ -17,6 +19,7 @@ Problem ChooseProblem()
         << "1. Sorting problems" << std::endl
         << "2. Tree problems" << std::endl
         << "3. Hash problems" << std::endl
+        << "4. Other problems" << std::endl
         << ">> ";
 
     std::cin >> pid;
@@ -30,6 +33,8 @@ Problem ChooseProblem()
             return Problem::TREE;
         case 3:
             return Problem::HASH;
+        case 4:
+            return Problem::OTHER;
         default:
             cout << "Invalid choice, exit" << std::endl;
             exit(0);
@@ -101,6 +106,41 @@ void RunHash()
 {
 }
 
+void RunOthers()
+{
+    int prid;
+
+    std::cout << "Choose the problem:" << std::endl;
+    DisplayOtherProblems();
+    std::cout << ">> ";
+    std::cin >> prid;
+
+    switch(prid)
+    {
+        case (int)OtherProblems::SOUNDEX:
+            {
+                char srcName[20];
+                char nameListFile[256];
+                std::vector<string> vNames;
+
+                std::cout << "Enter the origin name:" << std::endl;
+                std::cin >> srcName;
+                std::cout << "Enter the file name listing candidate names:\t" << std::endl;
+                std::cin >> nameListFile;
+
+                std::ifstream is(nameListFile);
+
+                while(is.getline(srcName, 20))
+                    vNames.push_back(srcName);
+                
+                GetSoundexNames(srcName, vNames);
+                break;
+            }
+        default:
+            break;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     if(argc != 1) {
@@ -119,6 +159,9 @@ int main(int argc, char *argv[])
                 break;
             case Problem::HASH:
                 RunHash();
+                break;
+            case Problem::OTHER:
+                RunOthers();
                 break;
             default:
                 break;
