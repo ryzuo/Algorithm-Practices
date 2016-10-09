@@ -3,6 +3,7 @@
 #include "funutil.h"
 #include <unistd.h>
 #include <fstream>
+#include <iostream>
 
 void Usage()
 {
@@ -106,6 +107,26 @@ void RunHash()
 {
 }
 
+void RunSoundex()
+{
+    char srcName[20];
+    std::string orgName;
+    std::string nameListFile;
+    std::vector<std::string> vNames;
+
+    std::cout << "Enter the origin name:" << std::endl << ">> ";
+    std::cin >> orgName;
+    std::cout << "Enter the file name listing candidate names:\t" << std::endl << ">> ";
+    std::cin >> nameListFile;
+
+    std::ifstream is(nameListFile);
+
+    while(is.getline(srcName, 20))
+        vNames.push_back(srcName);
+
+    GetSoundexNames(orgName, vNames);
+}
+
 void RunOthers()
 {
     int prid;
@@ -118,24 +139,8 @@ void RunOthers()
     switch(prid)
     {
         case (int)OtherProblems::SOUNDEX:
-            {
-                char srcName[20];
-                char nameListFile[256];
-                std::vector<string> vNames;
-
-                std::cout << "Enter the origin name:" << std::endl;
-                std::cin >> srcName;
-                std::cout << "Enter the file name listing candidate names:\t" << std::endl;
-                std::cin >> nameListFile;
-
-                std::ifstream is(nameListFile);
-
-                while(is.getline(srcName, 20))
-                    vNames.push_back(srcName);
-                
-                GetSoundexNames(srcName, vNames);
-                break;
-            }
+            RunSoundex();
+            break;
         default:
             break;
     }

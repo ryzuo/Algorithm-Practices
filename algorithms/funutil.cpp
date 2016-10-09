@@ -12,12 +12,9 @@ std::string soundex(std::string word)
     targetStr.push_back(word[0]);    // Retain the first letter
     int setLen = 1;
 
-    for(auto chr : word)
+    for(int i=1; i < word.length(); ++i)
     {
-        if(setLen == 1)
-            continue;
-
-        chr = toupper(chr);
+        char chr = toupper(word[i]);
         switch(chr)
         {
             case 'A':
@@ -82,8 +79,6 @@ std::string soundex(std::string word)
     if(setLen < targetLen)
         targetStr.append(targetLen - setLen, '0');
 
-    std::cout << targetStr << std::endl;
-
     return targetStr;
 
 } // end of soundex
@@ -91,10 +86,12 @@ std::string soundex(std::string word)
 void GetSoundexNames(std::string name, std::vector<std::string> vNames)
 {
     std::string phoneticStr = soundex(name);
+    std::cout << "Matched names:" << std::endl;
     for(auto candidate : vNames)
     {
         if(phoneticStr == soundex(candidate))
             std::cout << candidate << std::endl;
     }
+    std::cout << std::endl;
 }
 

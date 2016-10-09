@@ -1,5 +1,5 @@
-CXX = g++
-LINK = g++
+CXX = /home/zuor/tools/bin/g++
+LINK = /home/zuor/tools/bin/g++
 CXXFLAGS = -g -m64 -std=c++11
 OBJS = common.o \
 	   run.o \
