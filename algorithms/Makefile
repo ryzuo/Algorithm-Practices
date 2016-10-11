@@ -1,8 +1,9 @@
-CXX = /home/zuor/tools/bin/g++
-LINK = /home/zuor/tools/bin/g++
-CXXFLAGS = -g -m64 -std=c++11
+CXX = g++
+LINK = g++
+CXXFLAGS = -g -m64 -std=c++11 -D__CSTRING_SOL
 OBJS = common.o \
 	   run.o \
+	   pstrings.o \
 	   funutil.o
 
 # Default object

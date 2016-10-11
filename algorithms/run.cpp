@@ -1,9 +1,11 @@
-#include "common.h"
-#include "sort.h"
-#include "funutil.h"
 #include <unistd.h>
 #include <fstream>
 #include <iostream>
+
+#include "common.h"
+#include "sort.h"
+#include "pstrings.h"
+#include "funutil.h"
 
 void Usage()
 {
@@ -18,9 +20,10 @@ Problem ChooseProblem()
     std::cout << "Choose the problem you want to run:" << std::endl
         << "0. Exit" << std::endl
         << "1. Sorting problems" << std::endl
-        << "2. Tree problems" << std::endl
-        << "3. Hash problems" << std::endl
-        << "4. Other problems" << std::endl
+        << "2. String problems" << std::endl
+        << "3. Tree problems" << std::endl
+        << "4. Hash problems" << std::endl
+        << "5. Other problems" << std::endl
         << ">> ";
 
     std::cin >> pid;
@@ -31,10 +34,12 @@ Problem ChooseProblem()
         case 1:
             return Problem::SORTING;
         case 2:
-            return Problem::TREE;
+            return Problem::STRING;
         case 3:
-            return Problem::HASH;
+            return Problem::TREE;
         case 4:
+            return Problem::HASH;
+        case 5:
             return Problem::OTHER;
         default:
             cout << "Invalid choice, exit" << std::endl;
@@ -99,6 +104,25 @@ void RunSort()
     }
 }
 
+void RunString()
+{
+#ifdef __CSTRING_SOL
+    char srcStr[MAX_STRING_LEN] = {0};
+    char *tgtStr = nullptr;
+#else
+    std::string srcStr;
+    std::string tgtStr;
+#endif
+
+    std::cout << "Enter the source string of characters:" << std::endl << ">> ";
+    std::cin >> srcStr;
+
+    tgtStr = Reverse(srcStr);
+
+    std::cout << "The reversed string is:" << std::endl
+        << tgtStr << std::endl;
+}
+
 void RunTree()
 {
 }
@@ -158,6 +182,9 @@ int main(int argc, char *argv[])
         {
             case Problem::SORTING:
                 RunSort();
+                break;
+            case Problem::STRING:
+                RunString();
                 break;
             case Problem::TREE:
                 RunTree();

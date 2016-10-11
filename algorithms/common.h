@@ -10,6 +10,7 @@ using namespace std;
 enum class Problem
 {
     SORTING,
+    STRING,
     TREE,
     HASH,
     OTHER
@@ -23,6 +24,11 @@ enum class SortingMethods
     MERGE,
     QUICK,
     HEAP
+};
+
+enum class StringProblems
+{
+    REVERSE = 201
 };
 
 enum class OtherProblems
@@ -39,6 +45,12 @@ inline void DisplaySortingMethods()
         << (int)SortingMethods::MERGE << ". Merge Sort" << std::endl
         << (int)SortingMethods::QUICK << ". Quick Sort" << std::endl
         << (int)SortingMethods::HEAP << ". Heap Sort" << std::endl;
+}
+
+inline void DisplayStringProblems()
+{
+    std::cout
+        << (int)StringProblems::REVERSE << ". Reverse a string (Reverse the order of letters of this string)" << std::endl;
 }
 
 inline void DisplayOtherProblems()
