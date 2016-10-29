@@ -49,7 +49,7 @@ Problem ChooseProblem()
 
 void RunSort()
 {
-    int mid;
+    int mId;
     std::string arrFile;
     std::vector<int> sorted_voi;
 
@@ -58,7 +58,7 @@ void RunSort()
     std::cout << "Choose the sorting method:" << std::endl;
     DisplaySortingMethods();
     std::cout << ">> ";
-    cin >> mid;
+    cin >> mId;
     
     std::vector<int> voi(std::move(BuildIntArrayFromFile(arrFile)));
     
@@ -72,7 +72,7 @@ void RunSort()
     }
 
     // Do sorting 
-    switch(mid) {
+    switch(mId) {
         case (int)SortingMethods::INSERTION:
             sorted_voi = insertion_sort<int>(std::move(voi));
             break;
@@ -106,6 +106,7 @@ void RunSort()
 
 void RunString()
 {
+    int pId;
 #ifdef __CSTRING_SOL
     char srcStr[MAX_STRING_LEN] = {0};
     char *tgtStr = nullptr;
@@ -113,11 +114,23 @@ void RunString()
     std::string srcStr;
     std::string tgtStr;
 #endif
+    
+    std::cout << "Choose the specific problem:" << std::endl;
+    DisplayStringProblems();
+    std::cout << ">> ";
+    cin >> pId;
 
     std::cout << "Enter the source string of characters:" << std::endl << ">> ";
     std::cin >> srcStr;
 
-    tgtStr = Reverse(srcStr);
+    switch(pId)
+    {
+        case (int)StringProblems::REVERSE:
+            tgtStr = Reverse(AS_STRING(srcStr));
+            break;
+        default:
+            break;
+    }
 
     std::cout << "The reversed string is:" << std::endl
         << tgtStr << std::endl;

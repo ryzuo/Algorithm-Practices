@@ -8,7 +8,7 @@
 #define MAX_STRING_LEN    20000
 
 
-#ifndef CPP_SOL
+#ifdef __CSTRING_SOL
 char *Reverse(char *source, size_t len = CSTR_NTS);
 #else
 std::string Reverse(std::string &&source);

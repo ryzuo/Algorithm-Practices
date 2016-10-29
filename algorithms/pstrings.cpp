@@ -8,6 +8,8 @@
 
 char *Reverse(char *source, size_t len)
 {
+    std::cout << "Using CString solution..." << std::endl;
+
     char tmpChr;
     int mid;
 
@@ -30,6 +32,22 @@ char *Reverse(char *source, size_t len)
 
 std::string Reverse(std::string &&source)
 {
+    std::cout << "Using C++ string solution..." << std::endl;
+
+    char tmpChr;
+    int mid;
+    size_t len = source.size();
+
+    mid = floor(len/2);
+
+    for(int i = 0, j = len-1; i < mid; ++i, --j)
+    {
+        tmpChr = source[i];
+        source[i] = source[j];
+        source[j] = tmpChr;
+    }
+
+    return source;
 }
 
 #endif
