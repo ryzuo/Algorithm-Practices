@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 
+#include "dpcommon.h"
+
 using namespace std;
 
 #ifdef __CSTRING_SOL
@@ -20,6 +22,7 @@ enum class Problem
     LIST,
     TREE,
     HASH,
+    DP,
     OTHER
 };
 
@@ -48,6 +51,8 @@ enum class OtherProblems
     SOUNDEX = 501
 };
 
+vector<int> BuildIntArrayFromFile(string filename);
+
 inline void DisplaySortingMethods()
 {
     std::cout
@@ -58,8 +63,6 @@ inline void DisplaySortingMethods()
         << (int)SortingMethods::QUICK << ". Quick Sort" << std::endl
         << (int)SortingMethods::HEAP << ". Heap Sort" << std::endl;
 }
-
-vector<int> BuildIntArrayFromFile(string filename);
 
 inline void DisplayStringProblems()
 {
@@ -72,7 +75,7 @@ inline void DisplayStringProblems()
 inline void DisplayListProblems()
 {
     std::cout
-        << (int)StringProblems::REVERSE
+        << (int)ListProblems::REVERSE
         << ". Reverse a Linked List(LeetCode problem #206): Reversed a singly linked list."
         << std::endl;
 }

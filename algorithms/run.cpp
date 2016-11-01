@@ -6,6 +6,7 @@
 #include "sort.h"
 #include "pstrings.h"
 #include "funutil.h"
+#include "dpcommon.h"
 
 void Usage()
 {
@@ -23,7 +24,8 @@ Problem ChooseProblem()
         << "2. String problems" << std::endl
         << "3. Tree problems" << std::endl
         << "4. Hash problems" << std::endl
-        << "5. Other problems" << std::endl
+        << "5. Dynamic programming problems" << std::endl
+        << "6. Other problems" << std::endl
         << ">> ";
 
     std::cin >> pid;
@@ -40,6 +42,8 @@ Problem ChooseProblem()
         case 4:
             return Problem::HASH;
         case 5:
+            return Problem::DP;
+        case 6:
             return Problem::OTHER;
         default:
             cout << "Invalid choice, exit" << std::endl;
@@ -204,6 +208,9 @@ int main(int argc, char *argv[])
                 break;
             case Problem::HASH:
                 RunHash();
+                break;
+            case Problem::DP:
+                RunDP();
                 break;
             case Problem::OTHER:
                 RunOthers();
