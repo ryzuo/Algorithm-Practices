@@ -3,4 +3,6 @@
 
 int MaxAmountOfCoinRow();
 
+int ScrapeUpCoins();
+
 #endif
