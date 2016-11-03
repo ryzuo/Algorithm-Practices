@@ -13,7 +13,7 @@ void RunDP(void)
     switch(pId)
     {
         case (int)DynPrgmProblems::COIN_ROW:
-        case (int)DynPrgmProblems::COIN_COMBINATION:
+        case (int)DynPrgmProblems::SCRPAEUP_COMBINATION:
         case (int)DynPrgmProblems::COIN_COLLECT:
             RunCoinGames(pId);
             break;
@@ -30,7 +30,8 @@ void RunCoinGames(int pid)
         case (int)DynPrgmProblems::COIN_ROW:
             MaxAmountOfCoinRow();
             break;
-        case (int)DynPrgmProblems::COIN_COMBINATION:
+        case (int)DynPrgmProblems::SCRPAEUP_COMBINATION:
+            ScrapeUpCoins();
             break;
         case (int)DynPrgmProblems::COIN_COLLECT:
             break;
